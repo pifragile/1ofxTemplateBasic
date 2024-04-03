@@ -1,20 +1,30 @@
-let cs;
+// example
+const canvas = document.createElement("canvas");
+canvas.id = "myCanvas";
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+canvas.style.zIndex = 8;
+canvas.style.position = "absolute";
 
-function setup() {
-    cs = min(windowHeight, windowWidth);
-    createCanvas(cs, cs);
-    noLoop();
-    colorMode(HSB);
-    noStroke();
-}
+const body = document.getElementsByTagName("body")[0];
+body.appendChild(canvas);
 
-function draw() {
-    background(random1ofx() * 360, 100, 100);
-    fill(random1ofx() * 360, 100, 100);
-    circle(random1ofx() * cs, random1ofx() * cs, 0.2 * cs);
-}
+const ctx = canvas.getContext("2d");
 
-function windowResizedUser() {
-    cs = min(windowHeight, windowWidth);
-    resizeCanvas(cs, cs);
+function drawArt() {
+    // example
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    ctx.clearRect(0, 0, width, height);
+
+    ctx.fillStyle = `rgba(${random1ofx() * 255}, ${random1ofx() * 255}, ${
+        random1ofx() * 255
+    }, 1)`;
+
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.fillStyle = "rgba(0, 255, 0, 1)";
+    ctx.fillRect(random1ofx() * width, random1ofx() * height, random1ofx() * width * 0.5, random1ofx() * height * 0.5);
 }

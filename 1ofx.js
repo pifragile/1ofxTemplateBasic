@@ -12,7 +12,7 @@ if (queryString) {
     getParams(queryString);
 }
 
-seedRandomness();
+triggerDraw();
 
 function getRandomHash() {
     var result = "";
@@ -45,14 +45,10 @@ window.addEventListener("message", (e) => {
 
 function triggerDraw() {
     seedRandomness();
-    redraw();
+    drawArt();
 }
 
-function windowResized() {
-    seedRandomness();
-    resetAnimation = true;
-    windowResizedUser();
-}
+window.addEventListener("resize", (e) => triggerDraw());
 
 function getRNG(hash) {
     return sfc32(...cyrb128(hash));
